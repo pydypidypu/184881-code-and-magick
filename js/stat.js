@@ -1,20 +1,20 @@
 'use strict';
 
-var initialX = 100; // Начальная координата облака Х px;
-var initialY = 10; // Начальная координата облака Y px;
+var initialX = 100; // Начальная координата тени облака Х px;
+var initialY = 10; // Начальная координата тени облака Y px;
 var heightRect = 270; // Высота облака px;
 var widthRect = 420; // Ширина облака px;
 var radius = 10; // Радиус углов облака px;
 var fillColor;
 
-var roundedRect = function (ctx, width) {
+var roundedRect = function (ctx) {
   ctx.beginPath();
   ctx.fillStyle = fillColor;
   ctx.moveTo(initialX, initialY + radius);
   ctx.lineTo(initialX, initialY + heightRect - radius);
   ctx.quadraticCurveTo(initialX, initialY + heightRect, initialX + radius, initialY + heightRect);
   ctx.lineTo(initialX + widthRect - radius, initialY + heightRect);
-  ctx.quadraticCurveTo(initialX + widthRect, initialY + heightRect, initialX + width, initialY + heightRect - radius);
+  ctx.quadraticCurveTo(initialX + widthRect, initialY + heightRect, initialX + widthRect, initialY + heightRect - radius);
   ctx.lineTo(initialX + widthRect, initialY + radius);
   ctx.quadraticCurveTo(initialX + widthRect, initialY, initialX + widthRect - radius, initialY);
   ctx.lineTo(initialX + radius, initialY);
@@ -26,10 +26,13 @@ var roundedRect = function (ctx, width) {
 window.renderStatistics = function (ctx, names, times) {
 
   fillColor = 'rgba(0, 0, 0, 0.7)'; // Цвет тени облака;
-  roundedRect(ctx, initialX, initialY, widthRect, heightRect, radius, fillColor);
+  roundedRect(ctx);
+
+  initialX -= 10; // Начальная координата облака Х px;
+  initialY -= 10; // Начальная координата облака Y px;
 
   fillColor = 'rgba(255, 255, 255, 1)'; // Цвет облака;
-  roundedRect(ctx, initialX - 10, initialY - 10, widthRect, heightRect, radius, fillColor);
+  roundedRect(ctx);
 
   ctx.fillStyle = 'black';
   ctx.font = '16px PT Mono';
