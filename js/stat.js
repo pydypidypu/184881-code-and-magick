@@ -1,5 +1,7 @@
 'use strict';
 
+/* global Utils */
+
 var initialX = 100; // Начальная координата тени облака Х px;
 var initialY = 10; // Начальная координата тени облака Y px;
 var heightRect = 270; // Высота облака px;
@@ -44,10 +46,6 @@ window.renderStatistics = function (ctx, names, times) {
     return Math.max.apply(null, times);
   };
 
-  var getRandomInt = function (min, max) {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-  };
-
   var barHeigth = 150; // Высота гистограммы px;
   var barInitialX = 130; // Начальная координата первой колонки X px;
   var barInitialY = 90; // Начальная координата первой колонки Y px;
@@ -62,7 +60,7 @@ window.renderStatistics = function (ctx, names, times) {
     if (names[i] === 'Вы') {
       ctx.fillStyle = colorMe;
     } else {
-      ctx.fillStyle = 'rgba(0,0,255, ' + 0.01 * getRandomInt(10, 100) + ')';
+      ctx.fillStyle = 'rgba(0,0,255, ' + 0.01 * Utils.getRandomInt(10, 100) + ')';
     }
 
     var curBarHeight = step * times[i];
