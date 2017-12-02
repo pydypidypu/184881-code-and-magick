@@ -38,7 +38,6 @@ window.renderStatistics = function (ctx, names, times) {
 
   ctx.fillStyle = 'black';
   ctx.font = '16px PT Mono';
-
   ctx.fillText('Ура вы победили!', initialX + 110, initialY + 20);
   ctx.fillText('Список результатов:', initialX + 110, initialY + 40);
 
